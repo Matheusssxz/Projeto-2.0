@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --cor-padrao-hover: #fff;
+    --cor-padrao: #5d27b6;
+}
+
+/* Configurações principais */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Banner */
+.banner {
+    background: linear-gradient(var(--cor-padrao), var(--cor-padrao-hover));
+}
+
+.banner .linha {
+    margin-top: 70px;
+}
+
+/* Container personalizado */
+.container {
+    max-width: 1300px !important; /* Força o container para essa largura */
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center !important;
+    padding: 20px;
+    justify-content: space-between;
+    padding: 10px 20px;
+}
+
+.logo img{
+    width: 100px;
+}
+
+.nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul {
+    display: inline-block;
+    list-style-type: none;
+}
+
+.navbar ul li {
+    display: inline-block !important;
+    margin-right: 20px !important;
+    
+}
+
+.navbar ul li a {
+    text-decoration: none !important;
+    color: #fff !important;
+    font-weight: 200px !important;
+}
+
+/* Texto dentro do banner */
+.banner p {
+    color: #000;
+}
+
+/* Alinhamento de conteúdo em linhas e colunas */
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.coluna-1 {
+    flex-basis: 50%;
+    min-width: 300px;
+}
+
+.coluna-1 img {
+    max-width: 100%;
+    padding: 50px 0;
+}
+
+.coluna-1 h1 {
+    font-size: 50px;
+    line-height: 60px;
+    margin: 25px 0;
+    color: #000;
+}
+
+.coluna-1 p {
+    font-weight: 600;
+    color: #000;
+}
+
+/* Botão do Banner*/
+.btn {
+    text-decoration: none;
+    color: #fff;
+    background: #000;
+    padding: 8px 30px;
+    margin: 30px 0;
+    border-radius: 30px;
+    transition: background 0.5s;
+}
+
+.btn:hover {
+    background: #009e00;
+    color: #fff;
+}
+
+/* Estilos do container das categorias */
+.container-categorias {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 15px;
+    max-width: 100%;
+    margin-top: 100px;
+    position: relative;
+    margin-top: 200px;
+    margin-bottom: 50px;
+}
+  
+.carrossel-categorias {
+    display: flex;
+    overflow-x: auto;
+    gap: 50px;
+    padding: 20px;
+    scroll-behavior: smooth;
+    transition: transform 0.3s ease;
+    /* Animação ao mover */
+    overflow: hidden;
+    /* Esconde a barra de rolagem */
+    scrollbar-width: none;
+    /* Para Firefox */
+}
+  
+.categorias{
+    position: relative;
+    margin: 10px;
+}
+  
+.carrossel::-webkit-scrollbar {
+    display: none;
+    /* Para Chrome, Safari e outros navegadores */
+}
+  
+/* Estilos para as imagens no carrossel Categorias */
+.categorias img {
+    /* Mantém as imagens em linha */
+    width: 200px;
+    height: 200px;
+    border-radius: 20%;
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.5s,opacitity 400ms;
+    user-select: none;
+    border: 1px solid black;
+}
+  
+.categorias img:hover {
+    transform: scale(1.2);
+    opacity: 0.7;
+}
+
+
+/* Produtos em Destaque */
+.corpo-destaques{
+    max-width: 100%;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.titulo{
+    position: relative;
+    line-height: 60px;
+    margin: 0 auto 80px;
+    text-align: center;
+    color:#000;
+
+}
+
+.titulo:after{
+    content: "";
+    background-color: #5d27b6;
+    width: 80px;
+    height: 5px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+
+
+.coluna-2{
+    flex-basis: 50%;
+    max-width: 275px;
+    padding: 10px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+
+.coluna-2:hover{
+    transform: scale(1.1);
+}
+
+
+.coluna-2 img {
+    max-width: 100%;
+    padding: 50px 0;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+    padding-bottom: 10px;
+}
+
+.h4{
+    color: #000;
+    font-weight: normal;
+}
+
+.classificacao{
+    color: #eead2d;
+}
+
+.coluna-2 p{
+    font-size: 14px;
+}
+
+.produtos img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Produtos */
+
+.corpo-produtos{
+    max-width: 70%;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+.coluna-3{
+    flex-basis: 30%;
+    max-width: 255px;
+    padding: 10px;
+    margin-bottom: 50px;
+    transition: transform 0.5s;
+}
+
+.coluna-3:hover{
+    transform: scale(1.1);
+}
+
+.coluna-3 img{
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8%;
+    max-width: 100%;
+    height: 70%;
+}
+
+.coluna-3 p{
+    font-size: 14px;
+}
+
+/*----------------RODAPE---------------*/
+
+.rodape{
+    background: #000;
+    color: #fff;
+    padding-left: 60px 0 20px !important;
+    font-size: 14px !important;
+    margin-top: 100px;
+}
+
+.rodape p{
+    color: #fff;
+}
+
+.rodape h3{
+    color:#fff;
+    margin-bottom: 20px;
+}
+
+.rodape-col-1,.rodape-col-2, .rodape-col-3{
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.rodape-col-1{
+    flex-basis: 30%;
+}
+
+.app-logo{
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.app-logo img{
+    width: 140px;
+}
+
+.rodape-col-2{
+    flex: 1 !;
+    text-align: center;
+}
+
+.rodape-col-2 img{
+    width: 180px;
+    margin-bottom: 20px;
+}
+
+.rodape-col-3{
+    flex-basis: 12%;
+    text-align: right;
+}
+
+ul{
+    list-style-type: none;
+}
+
+.rodape hr{
+    border: none;
+    height: 1px;
+    background: white;
+    margin: 20px 0;
+}
+
+.direitos{
+text-align: center;
+margin-bottom: 0;
+}
+
