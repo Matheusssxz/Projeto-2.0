@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loja Virtual CAMM.com.br - CAMM.com.br</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/principal.css">
+</head>
+
+<body>
+
+  <!--Inicio do Banner da Página Inicial-->
+  <div class="banner">
+    <div class="container">
+      <div class="navbar navbar-expand-lg navbar-light ">
+        <div class="logo">
+          <img src="img/icons/logo.svg" alt="CAMM">
+        </div>
+
+        <!-- Botão do Menu Hambúrguer -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu"
+          aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        <!-- Menu de Navegação -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="#produtos">Produtos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#empresaModal" data-toggle="modal">Empresa</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contatoModal" data-toggle="modal">Contatos</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastro</a></li>
+          </ul>
+        </div>
+
+        <button id="cart-button" class="ml-3" data-toggle="modal" data-target="#cartModal" style="background-color: transparent; border: none;">
+          <img src="img/icons/carrinho.svg" alt="Ícone do carrinho" id="cart-icon" width="30px" height="30px">
+          <span id="cart-count" class="badge badge-pill badge-warning">0</span>
+        </button>
+
+      </div>
+
+      <div class="row">
+        <div class="coluna-1">
+          <h1>Escolha um novo<br>estilo de vida!</h1>
+          <p>CAMM um estilo que une a todos!</p>
+          <br>
+          <a href="#empresaModal" data-toggle="modal" class="btn">Mais Informações &#8594;</a>
+        </div>
+        <div class="coluna-1">
+          <img src="img/banner/banner.png" alt="Banner de estilo de vida">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!------------- Modal "Sobre a Empresa" ---------------->
+  <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="empresaModalLabel">Bem-vindo à Nossa Empresa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body text-center">
+            <p>Na CAMM, acreditamos que a moda é uma forma de expressão única. Oferecemos as últimas tendências em roupas e acessórios para todos os estilos, com peças de alta qualidade, confortáveis e acessíveis. Nosso compromisso é proporcionar uma experiência de compra incrível, tanto online quanto em nossa loja física, com atendimento personalizado e uma curadoria de produtos feita especialmente para você.
+              Venha descobrir as coleções que combinam com sua personalidade e encontre aquele look perfeito para cada ocasião. Se você busca elegância, conforto ou estilo,CAMM um estilo que une a todos!</p>
+            <img src="img/icons/logo.svg"  alt="logo da Empresa" class="img-fluid rounded" style="background-color: black;">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de Informações de Contato -->
+  <div class="modal fade" id="contatoModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="contactModalLabel">Informações de Contato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p><strong>E-mail:</strong> CAMM@gmail.com</p>
+                <p><strong>Telefone:</strong> (81) 94002-8922</p>
+                <p><strong>Endereço:</strong> Av. Abdias de Carvalho, 123 - Recife, PE</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  
+  <!-- Modal do Carrinho de Compras -->
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul id="cart-items" class="list-group">
+            <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            <li class="list-group-item text-center" id="empty-cart-message">O carrinho está vazio.</li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="gap: 20px;">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+          <button type="button" class="btn btn-primary" onclick="checkout()">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!--Criação de um Container para as Categorias-->
+  <h2 class="titulo" style="text-align: center; margin-top: 200px;">Categorias</h2>
+  <div class="container-categorias">
+    <div class="carrossel-categorias" id="carrossel-categorias">
+      <div class="categorias">
+        <a href="categoria-feminina.html">
+          <img src="img/categorias/feminino.png" title="Feminina" alt="Feminino">
+        </a>
+      </div>
+      <div class="categorias">
+        <a href="categoria-masculina.html">
+          <img src="img/categorias/masculino.jpg" title="Masculina" alt="Masculino">
+        </a>
+      </div>
+      <div class="categorias">
+        <a href="categoria-infantil.html">
+          <img src="img/categorias/infantil.jpg" title="Infantil" alt="Infantil">
+        </a>
+      </div>
+      <div class="categorias">
+        <a href="categoria-calcados.html">
+          <img src="img/categorias/calcados.png" title="Calçados" alt="Calçados">
+        </a>
+      </div>
+      <div class="categorias">
+        <a href="categoria-acessorios.html">
+        <img src="img/categorias/acessorios.jpg" title="Acessórios" alt="Acessórios">
+        </a>
+      </div>
+      <div class="categorias">
+        <a href="categoria-pets.html">
+          <img src="img/categorias/pets.png" title="Pets" alt="Pets">
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-------------------------- Modal para Visualizar Detalhes do Produto -------------------------------->
+
+  <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Detalhes do Produto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img id="modalProductImage" src="" alt="Imagem do produto" class="img-fluid mb-3">
+          <h4 id="modalProductName"></h4>
+          <p id="modalProductPrice" class="text-muted"></p>
+          <p id="modalProductDescription"></p>
+          <label for="productQuantity">Quantidade:</label>
+          <input type="number" id="productQuantity" class="form-control" value="1" min="1">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" onclick="addProductToCart()">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-------------------------- Produtos Em Destaques -------------------------------->
+  <div class="corpo-destaques">
+
+    <h2 class="titulo" id = "produtos">Produtos em Destaque</h2>
+
+    <div class="row row-cols-1 row-colms-s-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4"> <!--Responsividade-->
+
+      <div class="coluna-2"
+        onclick="showProductModal('Vestido de Malha', 129.99, 'img/catalogo/feminino/f1.jpg', 'Um vestido de malha confortável e elegante.')">
+        <img src="img/catalogo/feminino/f1.jpg" alt="">
+        <h4>Vestido Azul Claro de Tricô</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 129,99</p>
+      </div>
+
+      <div class="coluna-2"
+        onclick="showProductModal('Blazer Azul Marinho', 139.99, 'img/catalogo/masculino/m7.png', 'Blazer azul marinho, ideal para ocasiões formais e eventos especiais.')">
+        <img src="img/catalogo/masculino/m7.png" alt="">
+        <h4>Blazer Azul Marinho</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+        <div class="coluna-2" onclick="showProductModal('Vestido Amarelo', 139.99, 'img/catalogo/infantil/i9.jpg', 'Vestido infantil amarelo, ideal para dias ensolarados.')">
+          <img src="img/catalogo/infantil/i9.jpg" alt="Vestido Amarelo">
+          <h4>Vestido Amarelo Sem Manga</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+
+        <div class="coluna-2"onclick="showProductModal('Corrente Dourada', 139.99, 'img/catalogo/acessorios/a3.jpg', 'Corrente dourada clássica e atemporal.')">
+          <img src="img/catalogo/acessorios/a3.jpg" alt="">
+          <h4>Corrente Dourada</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+
+        <div class="coluna-2" onclick="showProductModal('Bandana Para Pet', 139.99, 'img/catalogo/acessorios/a14.jpg', 'Bandana de algodão para o seu Pet.')">
+          <img src="img/catalogo/pets/p1.jpg" alt="">
+          <h4>Bandana Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    </div>
+  </div>
+
+  <!--------------------------Produtos-------------------------->
+  <div class="corpo-produtos">
+    <h2 class="titulo">Produtos</h2>
+
+    <div class="row row-cols-2 row-cols-lg-4 g-4">
+      <div class="coluna-3"
+        onclick="showProductModal('Camiseta Preta Básica', 139.99, 'img/catalogo/feminino/f10.jpg', 'Camiseta preta básica, ideal para qualquer ocasião.')">
+        <img src="img/catalogo/feminino/f10.jpg" alt="">
+        <h4>Camiseta Preta Básica</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Vestido Rosa de Babados', 139.99, 'img/catalogo/feminino/f3.png', 'Vestido rosa com babados, perfeito para eventos especiais.')">
+        <img src="img/catalogo/feminino/f3.png" alt="">
+        <h4>Vestido Rosa de Babados</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Vestido Marrom de Manga Longa', 139.99, 'img/catalogo/feminino/f7.jpg', 'Vestido marrom com mangas longas, estiloso e confortável.')">
+        <img src="img/catalogo/feminino/f7.jpg" alt="">
+        <h4>Vestido Marrom de Manga Longa</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Blusa de Manga Longa Branca', 139.99, 'img/catalogo/feminino/f8.jpg', 'Blusa branca de manga longa, ideal para dias frescos.')">
+        <img src="img/catalogo/feminino/f8.jpg" alt="">
+        <h4>Blusa de Manga Longa Branca</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+      <div class="coluna-3"
+        onclick="showProductModal('Vestido Azul Claro de Tricô', 139.99, 'img/catalogo/feminino/f1.jpg', 'Vestido de tricô em azul claro, perfeito para dias frios.')">
+        <img src="img/catalogo/feminino/f1.jpg" alt="">
+        <h4>Vestido Azul Claro de Tricô</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Jaqueta Jeans Branca', 139.99, 'img/catalogo/feminino/f2.jpg', 'Jaqueta jeans branca moderna e estilosa.')">
+        <img src="img/catalogo/feminino/f2.jpg" alt="">
+        <h4>Jaqueta Jeans Branca</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Conjunto Blazer e Calça Rosa', 139.99, 'img/catalogo/feminino/f6.jpg', 'Conjunto elegante de blazer e calça em rosa.')">
+        <img src="img/catalogo/feminino/f6.jpg" alt="">
+        <h4>Conjunto Blazer e Calça Rosa</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Suéter Bege de Tricô Gola Alta', 139.99, 'img/catalogo/feminino/f5.jpg', 'Suéter de tricô bege com gola alta, confortável e estiloso.')">
+        <img src="img/catalogo/feminino/f5.jpg" alt="">
+        <h4>Suéter Bege de Tricô Gola Alta</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+      <div class="coluna-3"
+        onclick="showProductModal('Blusa Lilás Com Laço', 139.99, 'img/catalogo/feminino/f4.png', 'Blusa lilás com laço, elegante e versátil.')">
+        <img src="img/catalogo/feminino/f4.png" alt="">
+        <h4>Blusa Lilás Com Laço</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Suéter Bege de Tricô', 139.99, 'img/catalogo/feminino/f9.jpg', 'Suéter bege de tricô, ideal para o frio.')">
+        <img src="img/catalogo/feminino/f9.jpg" alt="">
+        <h4>Suéter Bege de Tricô</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Jaqueta Branca Infantil', 139.99, 'img/catalogo/infantil/i1.jpg', 'Jaqueta branca para crianças, estilosa e confortável.')">
+        <img src="img/catalogo/infantil/i1.jpg" alt="">
+        <h4>Jaqueta Branca Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Suéter Amarelo Infantil', 139.99, 'img/catalogo/infantil/i2.png', 'Suéter infantil amarelo, ideal para o inverno.')">
+        <img src="img/catalogo/infantil/i2.png" alt="">
+        <h4>Suéter Amarelo Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+      <div class="coluna-3"
+        onclick="showProductModal('Conjunto Infantil Rosa', 139.99, 'img/catalogo/infantil/i4.png', 'Conjunto rosa infantil, confortável e estiloso.')">
+        <img src="img/catalogo/infantil/i4.png" alt="">
+        <h4>Conjunto Infantil Rosa</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Vestido Amarelo', 139.99, 'img/catalogo/infantil/i9.jpg', 'Vestido infantil amarelo, ideal para dias ensolarados.')">
+        <img src="img/catalogo/infantil/i9.jpg" alt="Vestido Amarelo">
+        <h4>Vestido Amarelo</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco de Tricô Infantil', 139.99, 'img/catalogo/infantil/i3.jpg', 'Casaco de tricô infantil, perfeito para dias frios.')">
+        <img src="img/catalogo/infantil/i3.jpg" alt="">
+        <h4>Casaco de Tricô Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco Azul Claro Infantil', 139.99, 'img/catalogo/infantil/i5.jpg', 'Blusa infantil com estampa animal print, divertida e estilosa.')">
+        <img src="img/catalogo/infantil/i5.jpg" alt="">
+        <h4>Casaco Azul Claro Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+      <div class="coluna-3"
+        onclick="showProductModal('Camisa Verde com Estampa', 139.99, 'img/catalogo/infantil/i6.jpg', 'Camisa verde infantil com estampa folhada.')">
+        <img src="img/catalogo/infantil/i6.jpg" alt="Camisa Verde com Estampa de Folhagem">
+        <h4>Camisa Verde Estampada</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Jaqueta Verde Militar Infantil', 139.99, 'img/catalogo/infantil/i7.jpg', 'Jaqueta verde militar estilosa e confortável para crianças.')">
+        <img src="img/catalogo/infantil/i7.jpg" alt="Jaqueta Verde Militar Infantil">
+        <h4>Jaqueta Verde Militar Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Camisa Abotoada Azul Infantil', 139.99, 'img/catalogo/infantil/i8.jpg', 'Camisa azul infantil com botões, ideal para ocasiões especiais.')">
+        <img src="img/catalogo/infantil/i8.jpg" alt="Camisa Abotoada Azul Infantil">
+        <h4>Camisa Abotoada Azul Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+
+      <div class="coluna-3"
+        onclick="showProductModal('Colete Jeans Infantil', 139.99, 'img/catalogo/infantil/i10.jpg', 'Colete jeans infantil, ideal para looks casuais e confortáveis.')">
+        <img src="img/catalogo/infantil/i10.jpg" alt="">
+        <h4>Colete Jeans Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <!---------- Outros itens ocultos inicialmente ---------------->
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Conjunto Casual Branco', 139.99, 'img/catalogo/masculino/m1.png', 'Conjunto casual branco, perfeito para o dia a dia.')">
+        <img src="img/catalogo/masculino/m1.png" alt="">
+        <h4>Conjunto Casual Branco</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Camiseta Azul Claro', 139.99, 'img/catalogo/masculino/m2.png', 'Camiseta azul clara, básica e confortável.')">
+        <img src="img/catalogo/masculino/m2.png" alt="">
+        <h4>Camiseta Azul Claro</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Regata Preta Casual', 139.99, 'img/catalogo/masculino/m3.png', 'Regata preta casual, confortável e ideal para o calor.')">
+        <img src="img/catalogo/masculino/m3.png" alt="">
+        <h4>Regata Preta Casual</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Jaqueta Jeans Clara', 139.99, 'img/catalogo/masculino/m4.png', 'Jaqueta jeans clara, uma opção versátil para o outono.')">
+        <img src="img/catalogo/masculino/m4.png" alt="">
+        <h4>Jaqueta Jeans Clara</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco Marrom Com Forro', 139.99, 'img/catalogo/masculino/m5.png', 'Casaco marrom com forro, perfeito para dias mais frios.')">
+        <img src="img/catalogo/masculino/m5.png" alt="">
+        <h4>Casaco Marrom Com Forro</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Camisa Cinza Esportiva', 139.99, 'img/catalogo/masculino/m6.png', 'Camisa cinza esportiva, perfeita para atividades físicas e casual.')">
+        <img src="img/catalogo/masculino/m6.png" alt="">
+        <h4>Camisa Cinza Esportiva</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Blazer Azul Marinho', 139.99, 'img/catalogo/masculino/m7.png', 'Blazer azul marinho, ideal para ocasiões formais e eventos especiais.')">
+        <img src="img/catalogo/masculino/m7.png" alt="">
+        <h4>Blazer Azul Marinho</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3" onclick="showProductModal('Casaco Cinza Básica', 139.99, 'img/catalogo/masculino/m8.png', 'Casaco cinza básico, uma opção versátil e confortável para o inverno.')">
+        <img src="img/catalogo/masculino/m8.png" alt="">
+        <h4>Casaco Cinza Básica</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Jaqueta Bobojaco Preta', 139.99, 'img/catalogo/masculino/m9.png', 'Jaqueta Bobojaco preta, ideal para o inverno e looks urbanos.')">
+        <img src="img/catalogo/masculino/m9.png" alt="">
+        <h4>Jaqueta Bobojaco Preta</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco Marron Aveludado', 139.99, 'img/catalogo/masculino/m10.png', 'Casaco marrom aveludado, perfeito para o inverno e ocasiões especiais.')">
+        <img src="img/catalogo/masculino/m10.png" alt="">
+        <h4>Casaco Marron Aveludado</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Esportivo Azul e Branco', 139.99, 'img/catalogo/calcados/c1.jpg', 'Tênis esportivo azul e branco, perfeito para atividades físicas e conforto no dia a dia.')">
+        <img src="img/catalogo/calcados/c1.jpg" alt="">
+        <h4>Tênis Esportivo Azul e Branco</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Estiloso Azul Marinho', 139.99, 'img/catalogo/calcados/c2.jpg', 'Tênis estiloso azul marinho, uma ótima opção para o seu estilo.')">
+        <img src="img/catalogo/calcados/c2.jpg" alt="">
+        <h4>Tênis Estiloso Azul Marinho</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Sapatênis Cinza Casual', 139.99, 'img/catalogo/calcados/c3.jpg', 'Sapatênis cinza casual, confortável e versátil.')">
+        <img src="img/catalogo/calcados/c3.jpg" alt="">
+        <h4>Sapatênis Cinza Casual</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Preto Esportivo', 139.99, 'img/catalogo/calcados/c4.jpg', 'Tênis preto esportivo, ideal para atividades físicas e conforto no dia a dia.')">
+        <img src="img/catalogo/calcados/c4.jpg" alt="">
+        <h4>Tênis Preto Esportivo</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon> 
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Laranja Estiloso', 139.99, 'img/catalogo/calcados/c10.jpg', 'Tênis laranja estiloso, uma excelente opção para quem busca estilo e conforto.')">
+        <img src="img/catalogo/calcados/c10.jpg" alt="">
+        <h4>Tênis Laranja Estiloso</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Infantil Azul Marinho', 139.99, 'img/catalogo/calcados/c9.jpg', 'Tênis infantil azul marinho, confortável e ideal para os pequenos.')">
+        <img src="img/catalogo/calcados/c9.jpg" alt="">
+        <h4>Tênis Infantil Azul Marinho</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Infantil Azul Listrado', 139.99, 'img/catalogo/calcados/c5.jpg', 'Tênis infantil azul listrado, confortável e cheio de estilo.')">
+        <img src="img/catalogo/calcados/c5.jpg" alt="">
+        <h4>Tênis Infantil Azul Listrado</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Botinha Azul com Velcro', 139.99, 'img/catalogo/calcados/c7.jpg', 'Botinha azul com velcro, ideal para crianças pequenas, fácil de usar.')">
+        <img src="img/catalogo/calcados/c7.jpg" alt="">
+        <h4>Botinha Azul com Velcro</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Sapatilha Rosa Infantil', 139.99, 'img/catalogo/calcados/c6.jpg', 'Sapatilha rosa, delicada e confortável, ideal para ocasiões especiais.')">
+        <img src="img/catalogo/calcados/c6.jpg" alt="">
+        <h4>Sapatilha Rosa Infantil</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Chinelo Infantil Listrado Rosa', 139.99, 'img/catalogo/calcados/c8.jpg', 'Chinelo confortável e colorido para crianças.')">
+        <img src="img/catalogo/calcados/c8.jpg" alt="">
+        <h4>Chinelo Infantil Listrado Rosa</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Tênis Rosa Casual', 139.99, 'img/catalogo/calcados/c15.png', 'Tênis rosa casual, perfeito para o dia a dia.')">
+        <img src="img/catalogo/calcados/c15.png" alt="">
+        <h4>Tênis Rosa Casual</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Sapato Alto Azul Marinho', 139.99, 'img/catalogo/calcados/c11.png', 'Elegante sapato azul marinho para ocasiões especiais.')">
+        <img src="img/catalogo/calcados/c11.png" alt="">
+        <h4>Sapato Alto Azul Marinho</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Sapato Rosa de Bolinhas', 139.99, 'img/catalogo/calcados/c12.png', 'Sapato rosa de bolinhas para crianças.')">
+        <img src="img/catalogo/calcados/c12.png" alt="">
+        <h4>Sapato Rosa de Bolinhas</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Sapato Jeans Casual', 139.99, 'img/catalogo/calcados/c13.png', 'Sapato casual jeans, ideal para o dia a dia.')">
+        <img src="img/catalogo/calcados/c13.png" alt="">
+        <h4>Sapato Jeans Casual</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Salto Rosa', 139.99, 'img/catalogo/calcados/c14.png', 'Salto rosa elegante para eventos formais.')">
+        <img src="img/catalogo/calcados/c14.png" alt="">
+        <h4>Salto Rosa</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Anéis Prateados', 139.99, 'img/catalogo/acessorios/a7.jpg', 'Anéis prateados, acessório sofisticado para qualquer ocasião.')">
+        <img src="img/catalogo/acessorios/a7.jpg" alt="">
+        <h4>Anéis Prateados</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Pulseira Dourada', 139.99, 'img/catalogo/acessorios/a2.jpg', 'Pulseira dourada elegante e sofisticada.')">
+        <img src="img/catalogo/acessorios/a2.jpg" alt="">
+        <h4>Pulseira Dourada</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Corrente Dourada', 139.99, 'img/catalogo/acessorios/a3.jpg', 'Corrente dourada clássica e atemporal.')">
+        <img src="img/catalogo/acessorios/a3.jpg" alt="">
+        <h4>Corrente Dourada</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Colar Fino de Ouro', 139.99, 'img/catalogo/acessorios/a4.jpg', 'Este é um lindo colar de ouro fino, ideal para ocasiões especiais.')">
+        <img src="img/catalogo/acessorios/a4.jpg" alt="Colar Fino de Ouro">
+        <h4>Colar Fino de Ouro</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Corrente de Prata', 139.99, 'img/catalogo/acessorios/a5.jpg', 'Corrente delicada de prata, perfeita para o dia a dia.')">
+        <img src="img/catalogo/acessorios/a5.jpg" alt="Corrente de Prata">
+        <h4>Corrente de Prata</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Óculos de Sol Preto', 139.99, 'img/catalogo/acessorios/a6.png', 'Óculos de sol preto com design moderno.')">
+        <img src="img/catalogo/acessorios/a6.png" alt="Óculos de Sol Preto">
+        <h4>Óculos de Sol Preto</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Óculos de Sol', 139.99, 'img/catalogo/acessorios/a1.png', 'Óculos de sol com lentes escuras e armação elegante.')">
+        <img src="img/catalogo/acessorios/a1.png" alt="Óculos de Sol">
+        <h4>Óculos de Sol</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Headset Bluetooth', 139.99, 'img/catalogo/acessorios/a8.jpg', 'Headset Bluetooth com som de alta qualidade e conforto.')">
+        <img src="img/catalogo/acessorios/a8.jpg" alt="Headset Bluetooth">
+        <h4>Headset Bluetooth</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Colar Dourado com Estrela', 139.99, 'img/catalogo/acessorios/a9.jpg', 'Colar dourado com um design de estrela, sofisticado e brilhante.')">
+        <img src="img/catalogo/acessorios/a9.jpg" alt="Colar Dourado com Estrela">
+        <h4>Colar Dourado com Estrela</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Conjunto de Colares Dourados', 139.99, 'img/catalogo/acessorios/a10.jpg', 'Conjunto de colares dourados com diferentes designs e tamanhos.')">
+        <img src="img/catalogo/acessorios/a10.jpg" alt="Conjunto de Colares Dourados">
+        <h4>Conjunto de Colares Dourados</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Brinco de Pedras Azuis', 139.99, 'img/catalogo/acessorios/a11.jpg', 'Brinco com pedras azuis brilhantes, para um toque de sofisticação.')">
+        <img src="img/catalogo/acessorios/a11.jpg" alt="Brinco de Pedras Azuis">
+        <h4>Brinco de Pedras Azuis</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Brinco Azul', 139.99, 'img/catalogo/acessorios/a12.jpg', 'Brinco azul com design elegante, ideal para ocasiões especiais.')">
+        <img src="img/catalogo/acessorios/a12.jpg" alt="Brinco Azul">
+        <h4>Brinco Azul</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Brincos de Bronze', 139.99, 'img/catalogo/acessorios/a13.jpg', 'Brincos de bronze com design único e sofisticado.')">
+        <img src="img/catalogo/acessorios/a13.jpg" alt="Brincos de Bronze">
+        <h4>Brincos de Bronze</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Bandana Para Pet', 139.99, 'img/catalogo/acessorios/a14.jpg', 'Bandana de algodão para o seu Pet.')">
+        <img src="img/catalogo/pets/p1.jpg" alt="">
+        <h4>Bandana Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco Rosa Para Pets', 139.99, 'img/catalogo/pets/p2.jpg', 'Casaco rosa ideal para manter seu pet aquecido e estiloso.')">
+        <img src="img/catalogo/pets/p2.jpg" alt="Casaco Rosa Para Pets">
+        <h4>Casaco Rosa Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Coleira com Laço Estrelado', 139.99, 'img/catalogo/pets/p3.jpg', 'Coleira para pets com um delicado laço estrelado.')">
+        <img src="img/catalogo/pets/p3.jpg" alt="Coleira com Laço Estrelado">
+        <h4>Coleira com Laço Estrelado</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casaco Para Pets', 139.99, 'img/catalogo/pets/p4.jpg', 'Casaco quentinho e confortável para manter seu pet aquecido.')">
+        <img src="img/catalogo/pets/p4.jpg" alt="Casaco Para Pets">
+        <h4>Casaco Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Camiseta Azul e Cinza Para Pets', 139.99, 'img/catalogo/pets/p5.jpg', 'Camiseta confortável e estilosa em tons de azul e cinza para pets.')">
+        <img src="img/catalogo/pets/p5.jpg" alt="Camiseta Azul e Cinza Para Pets">
+        <h4>Camiseta Azul e Cinza Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Pote Para Ração', 139.99, 'img/catalogo/pets/p6.jpg', 'Pote para ração resistente e prático para manter a comida do seu pet organizada.')">
+        <img src="img/catalogo/pets/p6.jpg" alt="Pote Para Ração">
+        <h4>Pote Para Ração</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+    </div>
+
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4 d-none">
+      <div class="coluna-3"
+        onclick="showProductModal('Escova De Pelo Para Pets', 139.99, 'img/catalogo/pets/p7.jpg', 'Escova de pelo ideal para pets de diferentes pelagens.')">
+        <img src="img/catalogo/pets/p7.jpg" alt="Escova De Pelo Para Pets">
+        <h4>Escova De Pelo Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Mordedor Para Pets', 139.99, 'img/catalogo/pets/p8.jpg', 'Mordedor resistente e divertido para entreter seu pet.')">
+        <img src="img/catalogo/pets/p8.jpg" alt="Mordedor Para Pets">
+        <h4>Mordedor Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Casinha de Transporte Para Pets', 139.99, 'img/catalogo/pets/p9.jpg', 'Casinha de transporte segura e confortável para seu pet.')">
+        <img src="img/catalogo/pets/p9.jpg" alt="Casinha de Transporte Para Pets">
+        <h4>Casinha de Transporte Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+
+      <div class="coluna-3"
+        onclick="showProductModal('Coleira Reguladora Para Pets', 139.99, 'img/catalogo/pets/p10.jpg', 'Coleira reguladora confortável para o seu pet durante os passeios.')">
+        <img src="img/catalogo/pets/p10.jpg" alt="Coleira Reguladora Para Pets">
+        <h4>Coleira Reguladora Para Pets</h4>
+        <div class="classificacao">
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+          <ion-icon name="star"></ion-icon>
+        </div>
+        <p>R$ 139,99</p>
+      </div>
+    </div>
+
+    <button id="lerMais" class="btn btn-primary">Ver Mais</button>
+  </div>
+
+  <footer class="rodape">
+
+    <div class="container">
+      <div class="row">
+
+        <div class="rodape-col-1">
+          <h3>Baixe o nosso app</h3>
+          <p>Baixe o nosso aplicativo nas melhores plataformas.</p>
+          <div class="app-logo">
+            <img src="img/icons/play.png" alt="">
+            <img src="img/icons/apple.png" alt="">
+          </div>
+        </div>
+
+        <div class="rodape-col-2">
+          <img src="img/icons/logo.svg" alt="CAMM">
+          <p>Com uma seleção cuidadosamente de peças únicas,<br> a loja de roupas CAMM é o destino perfeito para quem
+            busca se destacar na multidão.</p>
+        </div>
+
+        <div class="rodape-col-3">
+          <h3>Mais Informações</h3>
+          <ul>
+            <li href="#empresaModal" data-toggle="modal" style="cursor: pointer;">Empresa</li>
+            <li>Política de Privacidade</li>
+            <li href="#contatoModal" data-toggle="modal" style="cursor: pointer;">Contatos</li>
+          </ul>
+        </div>
+
+      </div>
+      <hr>
+      <p class="direitos">
+        &#169; Todos os Direitos Reservados.
+      </p>
+
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <script src="js/categorias.js"></script>
+  <script src="js/lermais.js"></script>
+  <script src="js/jquery-3.5.1.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/carrinho.js"></script>z
+</body>
+
+</html>

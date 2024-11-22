@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Virtual CAMM.com.br - CAMM.com.br</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/categorias.css">
+</head>
+
+<body>
+    
+    <!--Inicio do Banner da Página Inicial-->
+    <!--Inicio do Banner da Página Inicial-->
+    <div class="banner">
+      <div class="container">
+        <div class="navbar navbar-expand-lg navbar-light ">
+          <div class="logo">
+              <img src="img/icons/logo.svg" alt="CAMM">
+          </div>
+      
+          <!-- Botão do Menu Hambúrguer -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+          </button>
+      
+      
+          <!-- Menu de Navegação -->
+          <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+              <li class="nav-item"><a class="nav-link" href="#empresaModal" data-toggle="modal">Empresa</a></li>
+              <li class="nav-item"><a class="nav-link" href="#contatoModal" data-toggle="modal">Contatos</a></li>
+              <li class="nav-item"><a class="nav-link" href="http://localhost:8000/login.php">Login</a></li>
+              <li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastro</a></li>
+            </ul>
+          </div>
+
+          <button id="cart-button" class="ml-3" data-toggle="modal" data-target="#cartModal" style="background-color: transparent; border: none;">
+            <img src="img/icons/carrinho.svg" alt="Ícone do carrinho" width="30px" height="30px">
+            <span id="cart-count" class="badge badge-pill badge-warning">0</span>
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="coluna-1">
+            <h1>Categoria Pets</h1>
+            <p>CAMM um estilo que une a todos!</p>
+        </div>
+        <div class="coluna-1">
+            <img src="img/banner/pets.png" alt="Banner de estilo de vida">
+        </div>
+      </div>
+    </div>
+
+  <!-------------Modal Sobre a Empresa---------------->
+  <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="empresaModalLabel">Bem-vindo à CAMM</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body text-center">
+            <p>A nossa empresa é líder no mercado, oferecendo soluções inovadoras e de alta qualidade.</p>
+            <img src="img/icons/logo.svg" alt="logo da Empresa" class="img-fluid rounded">
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <!----------------------------------- Modal do Carrinho de Compras ------------------------------------>
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul id="cart-items" class="list-group">
+            <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            <li class="list-group-item text-center">O carrinho está vazio.</li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="gap: 20px;">
+          <button type="button" class="btn2 btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+          <button type="button" class="btn2 btn-primary" onclick="checkout()">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-------------------------- Modal para Visualizar Detalhes do Produto -------------------------------->
+    
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="productModalLabel">Detalhes do Produto</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <img id="modalProductImage" src="" alt="Imagem do produto" class="img-fluid mb-3">
+                  <h4 id="modalProductName"></h4>
+                  <p id="modalProductPrice" class="text-muted"></p>
+                  <p id="modalProductDescription"></p>
+                  <label for="productQuantity">Quantidade:</label>
+                  <input type="number" id="productQuantity" class="form-control" value="1" min="1">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addProductToCart()">Adicionar ao Carrinho</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <div class="corpo-destaques">
+
+      <h2 class="titulo">Produtos em Destaque</h2>
+  
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+  
+        <div class="coluna-2" onclick="showProductModal('Bandana Para Pet', 139.99, 'img/catalogo/acessorios/a14.jpg', 'Bandana de algodão para o seu Pet.')">
+          <img src="img/catalogo/pets/p1.jpg" alt="">
+          <h4>Bandana Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+  
+        <div class="coluna-2"onclick="showProductModal('Mordedor Para Pets', 139.99, 'img/catalogo/pets/p8.jpg', 'Mordedor resistente e divertido para entreter seu pet.')">
+          <img src="img/catalogo/pets/p8.jpg" alt="Mordedor Para Pets">
+          <h4>Mordedor Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+  
+        <div class="coluna-2"onclick="showProductModal('Casaco Rosa Para Pets', 139.99, 'img/catalogo/pets/p2.jpg', 'Casaco rosa ideal para manter seu pet aquecido e estiloso.')">
+          <img src="img/catalogo/pets/p2.jpg" alt="Casaco Rosa Para Pets">
+          <h4>Casaco Rosa Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+  
+        <div class="coluna-2"onclick="showProductModal('Coleira Reguladora Para Pets', 139.99, 'img/catalogo/pets/p10.jpg', 'Coleira reguladora confortável para o seu pet durante os passeios.')">
+          <img src="img/catalogo/pets/p10.jpg" alt="Coleira Reguladora Para Pets">
+          <h4>Coleira Reguladora Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+  
+        <div class="coluna-2"onclick="showProductModal('Coleira com Laço Estrelado', 139.99, 'img/catalogo/pets/p3.jpg', 'Coleira para pets com um delicado laço estrelado.')">
+          <img src="img/catalogo/pets/p3.jpg" alt="Coleira com Laço Estrelado">
+          <h4>Coleira com Laço Estrelado</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+  
+      </div>
+    </div>
+    
+    
+    
+    <div class="corpo-produtos">
+      <h2 class="titulo">Produtos</h2>
+    
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+        <div class="coluna-3"onclick="showProductModal('Casaco Para Pets', 139.99, 'img/catalogo/pets/p4.jpg', 'Casaco quentinho e confortável para manter seu pet aquecido.')">
+          <img src="img/catalogo/pets/p4.jpg" alt="Casaco Para Pets">
+          <h4>Casaco Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+    
+        <div class="coluna-3"onclick="showProductModal('Camiseta Azul e Cinza Para Pets', 139.99, 'img/catalogo/pets/p5.jpg', 'Camiseta confortável e estilosa em tons de azul e cinza para pets.')">
+          <img src="img/catalogo/pets/p5.jpg" alt="Camiseta Azul e Cinza Para Pets">
+          <h4>Camiseta Azul e Cinza Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+        <div class="coluna-3"onclick="showProductModal('Coleira com Laço Estrelado', 139.99, 'img/catalogo/pets/p3.jpg', 'Coleira para pets com um delicado laço estrelado.')">
+          <img src="img/catalogo/pets/p3.jpg" alt="Coleira com Laço Estrelado">
+          <h4>Coleira com Laço Estrelado</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+        
+        <div class="coluna-3"onclick="showProductModal('Casaco Rosa Para Pets', 139.99, 'img/catalogo/pets/p2.jpg', 'Casaco rosa ideal para manter seu pet aquecido e estiloso.')">
+          <img src="img/catalogo/pets/p2.jpg" alt="Casaco Rosa Para Pets">
+          <h4>Casaco Rosa Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+      </div>
+    
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+        <div class="coluna-3" onclick="showProductModal('Bandana Para Pet', 139.99, 'img/catalogo/acessorios/a14.jpg', 'Bandana de algodão para o seu Pet.')">
+          <img src="img/catalogo/pets/p1.jpg" alt="">
+          <h4>Bandana Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+        <div class="coluna-3"onclick="showProductModal('Pote Para Ração', 139.99, 'img/catalogo/pets/p6.jpg', 'Pote para ração resistente e prático para manter a comida do seu pet organizada.')">
+          <img src="img/catalogo/pets/p6.jpg" alt="Pote Para Ração">
+          <h4>Pote Para Ração</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+        <div class="coluna-3"onclick="showProductModal('Escova De Pelo Para Pets', 139.99, 'img/catalogo/pets/p7.jpg', 'Escova de pelo ideal para pets de diferentes pelagens.')">
+          <img src="img/catalogo/pets/p7.jpg" alt="Escova De Pelo Para Pets">
+          <h4>Escova De Pelo Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+        <div class="coluna-3"onclick="showProductModal('Casinha de Transporte Para Pets', 139.99, 'img/catalogo/pets/p9.jpg', 'Casinha de transporte segura e confortável para seu pet.')">
+          <img src="img/catalogo/pets/p9.jpg" alt="Casinha de Transporte Para Pets">
+          <h4>Casinha de Transporte Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+      </div>
+    
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+        <div class="coluna-3"onclick="showProductModal('Coleira Reguladora Para Pets', 139.99, 'img/catalogo/pets/p10.jpg', 'Coleira reguladora confortável para o seu pet durante os passeios.')">
+          <img src="img/catalogo/pets/p10.jpg" alt="Coleira Reguladora Para Pets">
+          <h4>Coleira Reguladora Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+    
+        <div class="coluna-3"onclick="showProductModal('Mordedor Para Pets', 139.99, 'img/catalogo/pets/p8.jpg', 'Mordedor resistente e divertido para entreter seu pet.')">
+          <img src="img/catalogo/pets/p8.jpg" alt="Mordedor Para Pets">
+          <h4>Mordedor Para Pets</h4>
+          <div class="classificacao">
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+            <ion-icon name="star"></ion-icon>
+          </div>
+          <p>R$ 139,99</p>
+        </div>
+      </div>
+    </div>
+    
+    <footer class="rodape">
+
+      <div class="container">
+        <div class="row">
+  
+          <div class="rodape-col-1">
+            <h3>Baixe o nosso app</h3>
+            <p>Baixe o nosso aplicativo nas melhores plataformas.</p>
+            <div class="app-logo">
+              <img src="img/icons/play.png" alt="">
+              <img src="img/icons/apple.png" alt="">
+            </div>
+          </div>
+  
+          <div class="rodape-col-2">
+            <img src="img/icons/logo.svg" alt="CAMM">
+            <p>Com uma seleção cuidadosamente de peças únicas,<br> a loja de roupas CAMM é o destino perfeito para quem
+              busca se destacar na multidão.</p>
+          </div>
+  
+          <div class="rodape-col-3">
+            <h3>Mais Informações</h3>
+            <ul>
+              <li href="#empresaModal" data-toggle="modal" style="cursor: pointer;">Empresa</li>
+              <li>Política de Privacidade</li>
+              <li href="#contatoModal" data-toggle="modal" style="cursor: pointer;">Contatos</li>
+            </ul>
+          </div>
+  
+        </div>
+        <hr>
+        <p class="direitos">
+          &#169; Todos os Direitos Reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/carrinho.js"></script>
+</body>
+
+</html>

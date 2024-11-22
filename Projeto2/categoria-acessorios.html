@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loja Virtual CAMM.com.br - CAMM.com.br</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/categorias.css">
+</head>
+
+<body>
+    
+  <!--Inicio do Banner da Página Inicial-->
+  <div class="banner">
+    <div class="container">
+      <div class="navbar navbar-expand-lg navbar-light ">
+        <div class="logo">
+          <img src="img/icons/logo.svg" alt="CAMM">
+        </div>
+      
+        <!-- Botão do Menu Hambúrguer -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+      
+        <!-- Menu de Navegação -->
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="#empresaModal" data-toggle="modal">Empresa</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contatoModal" data-toggle="modal">Contatos</a></li>
+            <li class="nav-item"><a class="nav-link" href="http://localhost:8000/login.php">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="cadastro.php">Cadastro</a></li>
+          </ul>
+        </div>
+
+        <button id="cart-button" class="ml-3" data-toggle="modal" data-target="#cartModal" style="background-color: transparent; border: none;">
+          <img src="img/icons/carrinho.svg" alt="Ícone do carrinho" width="30px" height="30px">
+          <span id="cart-count" class="badge badge-pill badge-warning">0</span>
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="container" style="padding-top: 100px; padding-bottom: 100px;">
+    <div class="row"> 
+      <div class="coluna-1">
+          <h1 >Categoria Acessórios</h1>
+          <p>CAMM um estilo que une a todos!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-------------Modal Sobre a Empresa---------------->
+  <div class="modal fade" id="empresaModal" tabindex="-1" aria-labelledby="empresaModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="empresaModalLabel">Bem-vindo à CAMM</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body text-center">
+            <p>A nossa empresa é líder no mercado, oferecendo soluções inovadoras e de alta qualidade.</p>
+            <img src="img/icons/logo.svg" alt="logo da Empresa" class="img-fluid rounded">
+          </div>
+      </div>
+    </div>
+  </div>
+    
+  <!----------------------------------- Modal do Carrinho de Compras ------------------------------------>
+  <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="cartModalLabel">Carrinho de Compras</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <ul id="cart-items" class="list-group">
+            <!-- Itens do carrinho serão adicionados aqui dinamicamente -->
+            <li class="list-group-item text-center">O carrinho está vazio.</li>
+          </ul>
+        </div>
+        <div class="modal-footer" style="gap: 20px;">
+          <button type="button" class="btn2 btn-secondary" data-dismiss="modal">Continuar Comprando</button>
+          <button type="button" class="btn2 btn-primary" onclick="checkout()">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-------------------------- Modal para Visualizar Detalhes do Produto -------------------------------->
+    
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="productModalLabel">Detalhes do Produto</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <img id="modalProductImage" src="" alt="Imagem do produto" class="img-fluid mb-3">
+                  <h4 id="modalProductName"></h4>
+                  <p id="modalProductPrice" class="text-muted"></p>
+                  <p id="modalProductDescription"></p>
+                  <label for="productQuantity">Quantidade:</label>
+                  <input type="number" id="productQuantity" class="form-control" value="1" min="1">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="addProductToCart()">Adicionar ao Carrinho</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+
+    <div class="corpo-destaques">
+
+      <h2 class="titulo">Produtos em Destaque</h2>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+          
+          <div class="coluna-2" onclick="showProductModal('Anéis Prateados', 139.99, 'img/catalogo/acessorios/a7.jpg', 'Anéis prateados, acessório sofisticado para qualquer ocasião.')">
+            <img src="img/catalogo/acessorios/a7.jpg" alt="">
+            <h4>Anéis Prateados</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-2"onclick="showProductModal('Pulseira Dourada', 139.99, 'img/catalogo/acessorios/a2.jpg', 'Pulseira dourada elegante e sofisticada.')">
+            <img src="img/catalogo/acessorios/a2.jpg" alt="">
+            <h4>Pulseira Dourada</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-2"onclick="showProductModal('Corrente Dourada', 139.99, 'img/catalogo/acessorios/a3.jpg', 'Corrente dourada clássica e atemporal.')">
+            <img src="img/catalogo/acessorios/a3.jpg" alt="">
+            <h4>Corrente Dourada</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-2"onclick="showProductModal('Colar Fino de Ouro', 139.99, 'img/catalogo/acessorios/a4.jpg', 'Este é um lindo colar de ouro fino, ideal para ocasiões especiais.')">
+            <img src="img/catalogo/acessorios/a4.jpg" alt="Colar Fino de Ouro">
+            <h4>Colar Fino de Ouro</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-2"
+            onclick="showProductModal('Corrente de Prata', 139.99, 'img/catalogo/acessorios/a5.jpg', 'Corrente delicada de prata, perfeita para o dia a dia.')">
+            <img src="img/catalogo/acessorios/a5.jpg" alt="Corrente de Prata">
+            <h4>Corrente de Prata</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="corpo-produtos">
+      <h2 class="titulo">Produtos</h2>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+          <div class="coluna-3"onclick="showProductModal('Óculos de Sol Preto', 139.99, 'img/catalogo/acessorios/a6.png', 'Óculos de sol preto com design moderno.')">
+            <img src="img/catalogo/acessorios/a6.png" alt="Óculos de Sol Preto">
+            <h4>Óculos de Sol Preto</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Óculos de Sol', 139.99, 'img/catalogo/acessorios/a1.png', 'Óculos de sol com lentes escuras e armação elegante.')">
+            <img src="img/catalogo/acessorios/a1.png" alt="Óculos de Sol">
+            <h4>Óculos de Sol</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Headset Bluetooth', 139.99, 'img/catalogo/acessorios/a8.jpg', 'Headset Bluetooth com som de alta qualidade e conforto.')">
+            <img src="img/catalogo/acessorios/a8.jpg" alt="Headset Bluetooth">
+            <h4>Headset Bluetooth</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Colar Dourado com Estrela', 139.99, 'img/catalogo/acessorios/a9.jpg', 'Colar dourado com um design de estrela, sofisticado e brilhante.')">
+            <img src="img/catalogo/acessorios/a9.jpg" alt="Colar Dourado com Estrela">
+            <h4>Colar Dourado com Estrela</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+        </div>
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+          <div class="coluna-3"onclick="showProductModal('Conjunto de Colares Dourados', 139.99, 'img/catalogo/acessorios/a10.jpg', 'Conjunto de colares dourados com diferentes designs e tamanhos.')">
+            <img src="img/catalogo/acessorios/a10.jpg" alt="Conjunto de Colares Dourados">
+            <h4>Conjunto de Colares Dourados</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+  
+          <div class="coluna-3"onclick="showProductModal('Brinco de Pedras Azuis', 139.99, 'img/catalogo/acessorios/a11.jpg', 'Brinco com pedras azuis brilhantes, para um toque de sofisticação.')">
+            <img src="img/catalogo/acessorios/a11.jpg" alt="Brinco de Pedras Azuis">
+            <h4>Brinco de Pedras Azuis</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Brinco Azul', 139.99, 'img/catalogo/acessorios/a12.jpg', 'Brinco azul com design elegante, ideal para ocasiões especiais.')">
+            <img src="img/catalogo/acessorios/a12.jpg" alt="Brinco Azul">
+            <h4>Brinco Azul</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Brincos de Bronze', 139.99, 'img/catalogo/acessorios/a13.jpg', 'Brincos de bronze com design único e sofisticado.')">
+            <img src="img/catalogo/acessorios/a13.jpg" alt="Brincos de Bronze">
+            <h4>Brincos de Bronze</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+        </div>
+     
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+          <div class="coluna-3" onclick="showProductModal('Anéis Prateados', 139.99, 'img/catalogo/acessorios/a7.jpg', 'Anéis prateados, acessório sofisticado para qualquer ocasião.')">
+            <img src="img/catalogo/acessorios/a7.jpg" alt="">
+            <h4>Anéis Prateados</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Pulseira Dourada', 139.99, 'img/catalogo/acessorios/a2.jpg', 'Pulseira dourada elegante e sofisticada.')">
+            <img src="img/catalogo/acessorios/a2.jpg" alt="">
+            <h4>Pulseira Dourada</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+          
+          <div class="coluna-3"onclick="showProductModal('Corrente Dourada', 139.99, 'img/catalogo/acessorios/a3.jpg', 'Corrente dourada clássica e atemporal.')">
+            <img src="img/catalogo/acessorios/a3.jpg" alt="">
+            <h4>Corrente Dourada</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+
+          <div class="coluna-3"onclick="showProductModal('Colar Fino de Ouro', 139.99, 'img/catalogo/acessorios/a4.jpg', 'Este é um lindo colar de ouro fino, ideal para ocasiões especiais.')">
+            <img src="img/catalogo/acessorios/a4.jpg" alt="Colar Fino de Ouro">
+            <h4>Colar Fino de Ouro</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+        
+        </div>
+      
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6 g-4">
+          <div class="coluna-3"onclick="showProductModal('Corrente de Prata', 139.99, 'img/catalogo/acessorios/a5.jpg', 'Corrente delicada de prata, perfeita para o dia a dia.')">
+            <img src="img/catalogo/acessorios/a5.jpg" alt="Corrente de Prata">
+            <h4>Corrente de Prata</h4>
+            <div class="classificacao">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+            </div>
+            <p>R$ 139,99</p>
+          </div>
+        </div>
+
+      </div>
+    
+    </div>
+
+    <footer class="rodape">
+
+      <div class="container">
+        <div class="row">
+  
+          <div class="rodape-col-1">
+            <h3>Baixe o nosso app</h3>
+            <p>Baixe o nosso aplicativo nas melhores plataformas.</p>
+            <div class="app-logo">
+              <img src="img/icons/play.png" alt="">
+              <img src="img/icons/apple.png" alt="">
+            </div>
+          </div>
+  
+          <div class="rodape-col-2">
+            <img src="img/icons/logo.svg" alt="CAMM">
+            <p>Com uma seleção cuidadosamente de peças únicas,<br> a loja de roupas CAMM é o destino perfeito para quem
+              busca se destacar na multidão.</p>
+          </div>
+  
+          <div class="rodape-col-3">
+            <h3>Mais Informações</h3>
+            <ul>
+              <li href="#empresaModal" data-toggle="modal" style="cursor: pointer;">Empresa</li>
+              <li>Política de Privacidade</li>
+              <li href="#contatoModal" data-toggle="modal" style="cursor: pointer;">Contatos</li>
+            </ul>
+          </div>
+  
+        </div>
+        <hr>
+        <p class="direitos">
+          &#169; Todos os Direitos Reservados.
+        </p>
+      </div>
+    </footer>
+
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="js/jquery-3.5.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/carrinho.js"></script>
+  </body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
